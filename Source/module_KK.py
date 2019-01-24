@@ -24,8 +24,8 @@ from zipfile import ZipFile
 # Data manipulation and visualization
 import pandas as pd
 pd.options.display.float_format = '{:,.2f}'.format
-pd.options.display.max_rows = 1000
-pd.options.display.max_columns = 1000
+pd.options.display.max_rows = 10
+pd.options.display.max_columns = 20
 import numpy as np
 import itertools
 from tqdm import tqdm
