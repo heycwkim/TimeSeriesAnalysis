@@ -1,3 +1,14 @@
+# Install packages from jupyter Notebook
+# !python -m pip install --user --upgrade pip
+# !pip install missingno
+# !pip install xgboost
+# !pip install lightgbm
+# !pip install pyramid-arima
+
+# Auto reload
+# %reload_ext autoreload
+# %autoreload 2
+
 # Ignore the warnings
 import warnings
 warnings.filterwarnings('always')
