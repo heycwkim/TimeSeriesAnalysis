@@ -12556,7 +12556,7 @@ Cov(\epsilon_s, \epsilon_k) = 0~for~different~times!(s \ne k)
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="&#47784;&#45944;&#47553;(Deterministic-Model)">&#47784;&#45944;&#47553;(Deterministic Model)<a class="anchor-link" href="#&#47784;&#45944;&#47553;(Deterministic-Model)">&#182;</a></h2><ul>
-<li><strong>알고리즘:</strong>  </li>
+<li><strong>알고리즘:</strong> 독립 변수나 종속 변수가 반드시 대칭 분포를 보여야 한다는 가정은 없지만 정규 분포에 가까운 분포를 보일 수록 선형회귀모형의 성능이 좋아지는 경우가 많음  </li>
 </ul>
 <center>
 $Y \approx \hat{Y} = f(X_1, X_2, ..., X_k) = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots + \beta_kX_k \\
@@ -12564,7 +12564,15 @@ $Y \approx \hat{Y} = f(X_1, X_2, ..., X_k) = \beta_0 + \beta_1X_1 + \beta_2X_2 +
 = [1~X_1~X_2~\cdots~X_k]\begin{bmatrix} \beta_0 \\ \beta_1 \\ \beta_2 \\ \vdots \\ \beta_k \end{bmatrix}
 = \begin{bmatrix} 1~X_{11}~X_{21}~\cdots~X_{k1} \\ 1~X_{12}~X_{22}~\cdots~X_{k2} \\ \vdots \\ 1~X_{1t}~X_{2t}~\cdots~X_{kt} \end{bmatrix}
 \begin{bmatrix} \beta_0 \\ \beta_1 \\ \beta_2 \\ \vdots \\ \beta_k \end{bmatrix} = X\beta$
-</center>
+</center><ul>
+<li><strong>비선형변수 효과:</strong> 로그 또는 제곱근 등의 변환된 변수 사용시 회귀분석 성능 향상 가능<ul>
+<li>독립 변수나 종속 변수가 심하게 한쪽으로 치우친 분포를 보이는 경우</li>
+<li>독립 변수와 종속 변수간의 관계가 곱셈 혹은 나눗셉으로 연결된 경우</li>
+<li>종속 변수와 예측치가 비선형 관계를 보이는 경우</li>
+</ul>
+</li>
+</ul>
+
 </div>
 </div>
 </div>
@@ -12664,10 +12672,14 @@ $R^2$ = $\dfrac{ESS}{TSS}$ = $\dfrac{\sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2}{\su
 </blockquote>
 <p><strong>3) 정보량기준(Information Criterion):</strong> 회귀분석 외에도 다양한 알고리즘에 활용, 값이 작을수록 올바른 모형</p>
 <blockquote><p><strong>"회귀분석의 확률론적 모델(Probabilistic Model)"</strong></p>
-<center>
-$Y \approx \hat{Y} = f(X_1, X_2, ..., X_k) = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots + \beta_kX_k = E(Y|X_1, X_2, ... , X_k) = \displaystyle\prod_{i=1}^T p(Y_i|X_{1i}, X_{2i}, ... , X_{ki}) = \displaystyle\sum_{i=1}^T log(p(Y_i|X_{1i}, X_{2i}, ..., X_{ki})) \approx L$
-</center>
 </blockquote>
+<p>\begin{align*}
+Y \approx \hat{Y} &amp;= f(X_1, X_2, ..., X_k) \\
+&amp;= \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots + \beta_kX_k \\
+&amp;= E(Y|X_1, X_2, ... , X_k) \\ 
+&amp;= \displaystyle\prod_{i=1}^T p(Y_i|X_{1i}, X_{2i}, ... , X_{ki}) \\
+&amp;= \displaystyle \sum_{i=1}^T log(p(Y_i|X_{1i}, X_{2i}, ..., X_{ki})) \approx L \\
+\end{align*}</p>
 <ul>
 <li><strong><a href="https://en.wikipedia.org/wiki/Akaike_information_criterion">AIC(Akaike Information Criterion)</a></strong><br>
 : 모형과 데이터의 확률 분포 사이의 Kullback-Leibler 수준을 가장 크게하기 위한 시도</li>
@@ -12926,8 +12938,10 @@ data = sm.datasets.get_rdataset("AirPassengers")</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="&#51204;&#52376;&#47532;-&#48169;&#54693;">&#51204;&#52376;&#47532; &#48169;&#54693;<a class="anchor-link" href="#&#51204;&#52376;&#47532;-&#48169;&#54693;">&#182;</a></h2><ul>
-<li><strong>목적:</strong><ul>
+<h2 id="&#51204;&#52376;&#47532;-&#48169;&#54693;">&#51204;&#52376;&#47532; &#48169;&#54693;<a class="anchor-link" href="#&#51204;&#52376;&#47532;-&#48169;&#54693;">&#182;</a></h2><blockquote><p><strong>예측 정확성: 1) Train $\uparrow$ + Test $\uparrow$, 2) Train &lt;&lt;&lt; Test $\Longleftrightarrow$ 조건수(Condition Number) 감소</strong></p>
+</blockquote>
+<ul>
+<li><strong>조건수 감소 목적:</strong><ul>
 <li><strong>(비수학적 이해)</strong><br>
 : 독립변수들의 절대적 수치크기나 서로간의 의존도가 분석결과에 주는 영향을 줄이고 독립변수의 상대적인 비교효과 반영</li>
 <li><strong>(수학적 이해)</strong><br>
@@ -13294,7 +13308,7 @@ $조건수(Condition~Number) = \dfrac{\lambda_{max}}{\lambda_{min}} \\ where \\
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li><strong>회귀분석 결과 안정성 확보(조건수 낮추기):</strong> <blockquote><p><strong>1) 변수들의 단위차이로 숫자의 스케일들이 크게 다른 경우, 스케일링(Scaling)으로 해결 가능</strong><br>
+<li><strong>조건수 감소 방법(분석 결과 안정성 확보 방법):</strong> <blockquote><p><strong>1) 변수들의 단위차이로 숫자의 스케일들이 크게 다른 경우, 스케일링(Scaling)으로 해결 가능</strong><br>
 <strong>2) 독립변수들 간에 상관관계가 높은 "다중공선성" 존재할 경우,<br>
   Variance Inflation Factor(VIF)나 Principal Component Analysis(PCA)를 통한 변수선별로 해결 가능</strong><br>
 <strong>3) 독립변수들 간 의존성이 높은 변수들에 패널티를 부여하는 정규화(Resularization)로 해결 가능</strong></p>
@@ -13686,19 +13700,45 @@ Cov(\epsilon_s, \epsilon_k) = 0~for~different~times!(s \ne k)
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="&#54200;&#54693;-&#48516;&#49328;-&#49345;&#52649;&#44288;&#44228;(Bias-variance-Trade-off)">&#54200;&#54693;-&#48516;&#49328; &#49345;&#52649;&#44288;&#44228;(Bias-variance Trade-off)<a class="anchor-link" href="#&#54200;&#54693;-&#48516;&#49328;-&#49345;&#52649;&#44288;&#44228;(Bias-variance-Trade-off)">&#182;</a></h3><ul>
-<li><strong>편향(Bias):</strong> 예측값과 실제값의 차이로 모델의 방향,</li>
-<li><strong>편향(Bias(Real)):</strong> <U>복잡한 현실의 단순화로 미처 반영하지 못한 복잡성 => 작다면 Training의 패턴(복잡성) 최대반영</U></li>
-<li><strong>분산(Variance):</strong> 예측값이 평균으로부터 퍼진 정도, </li>
-<li><strong>분산(Variance(Real)):</strong> <U>다른 Training을 사용했을때 발생할 변화 => 크다면 Training에 따라 많은변화 발생가능</U></li>
+<h3 id="&#54200;&#54693;-&#48516;&#49328;-&#49345;&#52649;&#44288;&#44228;(Bias-variance-Trade-off)">&#54200;&#54693;-&#48516;&#49328; &#49345;&#52649;&#44288;&#44228;(Bias-variance Trade-off)<a class="anchor-link" href="#&#54200;&#54693;-&#48516;&#49328;-&#49345;&#52649;&#44288;&#44228;(Bias-variance-Trade-off)">&#182;</a></h3><p><strong>1) 편향과 분산의 정의</strong></p>
+<blockquote><p><strong>(비수학적 이해)</strong></p>
+<ul>
+<li><strong>편향(Bias):</strong> 점추정  <ul>
+<li>예측값과 실제값의 차이  </li>
+<li>모델 학습시 여러 데이터로 학습 후 예측값의 범위가 정답과 얼마나 멀리 있는지 측정  </li>
 </ul>
-<center><img src='Image/Bias_Variance1.jpeg' width='400'></center>
-<center><img src='Image/Bias_Variance2.png' width='280'></center>
-<center><img src='Image/Bias_Variance3.png' width='500'></center>
-<center><img src='Image/Bias_Variance4.png' width='400'></center><ul>
-<li><strong>높은편향과 높은분산 문제를 최소화하는 방법은?</strong><center><img src='Image/Bias_Variance_Reduce.png' width='600'></center></li>
+</li>
+<li><strong>편향(Bias(Real)):</strong> 모형화(단순화)로 미처 반영하지 못한 복잡성  <U>=> 편향이 작다면 Training 데이터 패턴(복잡성)을 최대반영 의미</U>  
+  <U>=> 편향이 크다면 Training 데이터 패턴(복잡성)을 최소반영 의미</U></li>
+<li><strong>분산(Variance):</strong> 구간추정  <ul>
+<li>학습한 모델의 예측값이 평균으로부터 퍼진 정도(변동성/분산)  </li>
+<li>여러 모델로 학습을 반복한다면, 학습된 모델별로 예측한 값들의 차이를 측정</li>
 </ul>
-
+</li>
+<li><strong>분산(Variance(Real)):</strong> 다른 데이터(Testing)를 사용했을때 발생할 변화  <U>=> 분산이 작다면 다른 데이터로 예측시 적은 변동 예상</U>  
+  <U>=> 분산이 크다면 다른 데이터로 예측시 많은 변동 예상</U></li>
+</ul>
+</blockquote>
+<center><img src='Image/Bias_Variance1.jpeg' width='400'></center><blockquote><p><strong>(수학적 이해)</strong></p>
+</blockquote>
+<p>\begin{align*}
+\text{Equation of Error} &amp;&amp; Err(x) &amp;= E\Bigl[\bigl(Y-\hat{f}(x)\bigr)^2 \Bigr] \\
+&amp;&amp; &amp;= \Bigl(E[\hat{f}(x)] - f(x)\Bigr)^2 + E \Bigl[\bigl(\hat{f}(x) - E[\hat{f}(x)]\bigr)^2 \Bigr] + \sigma_{\epsilon}^2 \\
+&amp;&amp; &amp;= \text{Bias}^2 + \text{Variance} + \text{Irreducible Error}
+\end{align*}</p>
+<p><strong>2) 편향과 분산의 관계</strong></p>
+<ul>
+<li><strong>모델의 복잡도가 낮으면 Bias가 증가하고 Variance가 감소(Underfitting)</strong><br>
+: 구간추정 범위는 좁으나 점추정 정확성 낮음<br>
+: Training/Testing 모두 예측력이 낮음</li>
+<li><strong>모델의 복잡도가 높으면 Bias가 감소하고 Variance가 증가(Overfitting)</strong><br>
+: 점추정 정확성은 높으나 구간추정 범위는 넓음<br>
+: Training만 잘 예측력 높고 Testing은 예측력 낮음  </li>
+<li><strong>Bias와 Variance가 최소화 되는 수준에서 모델의 복잡도 선택</strong>  </li>
+</ul>
+<center><img src='Image/Bias-Variance-Tradeoff.png' width='400'></center>
+<center><img src='Image/Bias_Variance4.png' width='400'></center><p><strong>3) 편향과 분산 모두를 최소화하는 방법</strong></p>
+<center><img src='Image/Bias_Variance_Reduce.png' width='600'></center>
 </div>
 </div>
 </div>

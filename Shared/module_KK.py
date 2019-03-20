@@ -21,6 +21,10 @@ from urllib.request import urlopen
 from io import BytesIO
 from zipfile import ZipFile
 
+# datasets
+from statsmodels import datasets
+from sklearn import datasets
+
 # Data manipulation, visualization and useful functions
 import pandas as pd
 pd.options.display.float_format = '{:,.2f}'.format
