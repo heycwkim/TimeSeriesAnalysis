@@ -51,7 +51,7 @@ import statsmodels.api as sm
 import statsmodels.tsa.api as smt
 import statsmodels.formula.api as smf
 from statsmodels.stats.outliers_influence import variance_inflation_factor
-from scipy import stats
+import scipy as sp
 
 # Regression
 from sklearn.linear_model import LinearRegression, Ridge, Lasso, ElasticNet

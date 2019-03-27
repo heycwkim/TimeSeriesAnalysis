@@ -12555,7 +12555,7 @@ Cov(\epsilon_s, \epsilon_k) = 0~for~different~times!(s \ne k)
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="&#47784;&#45944;&#47553;(Deterministic-Model)">&#47784;&#45944;&#47553;(Deterministic Model)<a class="anchor-link" href="#&#47784;&#45944;&#47553;(Deterministic-Model)">&#182;</a></h2><ul>
+<h2 id="&#47784;&#45944;&#47553;">&#47784;&#45944;&#47553;<a class="anchor-link" href="#&#47784;&#45944;&#47553;">&#182;</a></h2><ul>
 <li><strong>알고리즘:</strong> 독립 변수나 종속 변수가 반드시 대칭 분포를 보여야 한다는 가정은 없지만 정규 분포에 가까운 분포를 보일 수록 선형회귀모형의 성능이 좋아지는 경우가 많음  </li>
 </ul>
 <center>
@@ -12572,6 +12572,134 @@ $Y \approx \hat{Y} = f(X_1, X_2, ..., X_k) = \beta_0 + \beta_1X_1 + \beta_2X_2 +
 </ul>
 </li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#44160;&#51613;&#48169;&#54637;(&#44228;&#49688;&#52628;&#51221;)">&#44160;&#51613;&#48169;&#54637;(&#44228;&#49688;&#52628;&#51221;)<a class="anchor-link" href="#&#44160;&#51613;&#48169;&#54637;(&#44228;&#49688;&#52628;&#51221;)">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="&#44208;&#51221;&#47200;&#51201;-&#47784;&#54805;(Deterministic-Model)">&#44208;&#51221;&#47200;&#51201; &#47784;&#54805;(Deterministic Model)<a class="anchor-link" href="#&#44208;&#51221;&#47200;&#51201;-&#47784;&#54805;(Deterministic-Model)">&#182;</a></h3><blockquote><p><strong>"잔차제곱합(Residual Sum of Squares)을 최소로하는 $\beta$를 추정"</strong></p>
+</blockquote>
+<p><strong>1) 잔차벡터(Residual Vector):</strong></p>
+<center>$\epsilon = Y - \hat{Y} = Y - X\beta$</center><p><strong>2) 잔차제곱합(Residual Sum of Squares):</strong></p>
+<center>$RSS = \epsilon^T\epsilon = (Y - X\beta)^T(Y - X\beta) = Y^TY-2Y^TX\beta+\beta^TX^TX\beta$</center><p><strong>3) 잔차제곱합의 그레디언트(Gradient):</strong></p>
+<center>$\dfrac{dRSS}{d\beta} = -2X^TY + 2X^TX\beta$</center><p><strong>4) 잔차가 최소가 되는 최적화 조건은 최저점에서의 그레디언트(미분,기울기)이 0이 되어야 함:</strong></p>
+<center>$\dfrac{dRSS}{d\beta} = 0$</center><p><strong>5) 최적화를 위한 잔차제곱합의 그레디언트(Gradient):</strong></p>
+<center>$\dfrac{dRSS}{d\beta} = -2X^TY + 2X^TX\beta = 0 \\ X^TX\beta = X^TY$</center><p><strong>6) 추정된 계수:</strong></p>
+<center>$\beta = (X^TX)^{-1}X^TY$</center><ul>
+<li><strong>Summary:</strong><ul>
+<li>$X^TX$ 행렬이 역행렬이 존재해야 해 추정/존재 가능  </li>
+<li>역행렬이 미존재<br>
+= $X$가 서로 독립이 아님<br>
+= $X$가 Full Rank가 아님<br>
+= $X^TX$가 양의 정부호(Positive Definite)가 아님</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="&#54869;&#47456;&#47200;&#51201;-&#47784;&#54805;(Probabilistic-Model)">&#54869;&#47456;&#47200;&#51201; &#47784;&#54805;(Probabilistic Model)<a class="anchor-link" href="#&#54869;&#47456;&#47200;&#51201;-&#47784;&#54805;(Probabilistic-Model)">&#182;</a></h3><blockquote><p><strong>"종속변수의 발생가능성을 최대(최소)로하는 $\beta$를 추정"</strong></p>
+<ul>
+<li><strong>필요성:</strong> 결정론적 선형 회귀모형(OLS)는 데이터의 확률론적 가정이 없기에 단하나의 가중치(점추정)를 계산하나, 이 가중치의 신뢰도(구간추정)는 확인할 수 없음</li>
+<li><strong>예시:</strong> 집값에 대한 범죄율 영향력(가중치)이 -0.108이라면, 집값은 범죄율에 반비례한다 결론 내릴 수 있을까?<ul>
+<li>-0.108는 오로지 우리가 보유한 테스트 1회성 결과일 뿐 오차가 존재가능</li>
+<li>만약 오차가 0.0001이라면 실제 가중치 신뢰구간은 -0.108$\pm$0.0001 (-0.1081 ~ -0.1079)이기에 집값과 범죄율 반비례 결론 가능</li>
+<li>만약 오차가 0.2라면 실제 가중치는 (-0.308 ~ 0.092)이기에 가중치는 0이나 양수도 가능 -&gt; 집값과 범죄율은 정비례도 가능</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>\begin{align*}
+\text{Main Equation} &amp;&amp; Y \approx \hat{Y} &amp;= f(X_1, X_2, ..., X_k) \\
+&amp;&amp; &amp;= \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots + \beta_kX_k \\
+&amp;&amp; &amp;= E(Y|X_1, X_2, ... , X_k) \\ 
+&amp;&amp; &amp;\sim \mathcal{N}(X \beta, \sigma^2) \\
+&amp;&amp; p(Y \mid X, \theta) &amp;= \mathcal{N}(y \mid X \beta, \sigma^2 ) \\
+\end{align*}</p>
+<p>\begin{align*}
+\text{Error Poperties} &amp;&amp; p(\epsilon \mid \theta) &amp;= \mathcal{N}(0, \sigma^2 ) \text{  from  } \epsilon = Y - X \beta \\
+&amp;&amp; \text{E}(\epsilon \mid X) &amp;= 0 \\
+&amp;&amp; \text{E}(\epsilon) &amp;= \text{E}(\text{E}(\epsilon \mid X)) = 0 \\
+&amp;&amp; \text{E}(\epsilon X) &amp;= \text{E}(\text{E}(\epsilon X \mid X)) = \text{E}(X \text{E}(\epsilon\mid X)) = 0 \\
+&amp;&amp; \text{E}(\epsilon^2) &amp;= \sigma^2 (N-K) \\
+&amp;&amp; \text{Cov}(\epsilon_i, \epsilon_j \mid X) &amp;= 0 \;\; (i,j=1,2,\ldots,N)
+\end{align*}</p>
+<ul>
+<li><strong>Summary:</strong><ul>
+<li>$X, Y$ 중 어느 것도 정규분포일 필요는 없음  </li>
+<li>$Y$는 $X$에 대해 조건부로 정규분포를 따르며 $Y$자체가 무조건부로 정규분포일 필요는 없음  </li>
+<li>잔차의 기대값은 0  </li>
+<li>잔차의 조건부 기대값은 0  </li>
+<li>잔차와 독립변수 $X$는 상관관계 없음  </li>
+<li>$X$와 무관하게 잔차들간의 공분산은 0  </li>
+</ul>
+</li>
+</ul>
+<p><strong>1) Y의 발생가능성(Likelihood):</strong></p>
+<p>\begin{align*}
+p(Y_{1:N} \,\big|\, X_{1:N}, \theta) &amp;= \prod_{i=1}^N \mathcal{N}(Y_i \,\big|\, X_i \beta_i , \sigma^2) \\
+&amp;= \prod_{i=1}^N \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left\{-\frac{(Y_i- X_i \beta_i)^2}{2\sigma^2} \right\}
+\end{align*}</p>
+<p><strong>2) 더하기 사용을 위한 Log 변환(Log-Likelihood):</strong></p>
+<p>\begin{align*}
+\text{LL} &amp;= \log p(Y_{1:N} \,\big|\, X_{1:N}, \theta) \\
+&amp;= \log \prod_{i=1}^N \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left\{-\frac{(Y_i-X_i \beta_i)^2}{2\sigma^2} \right\}  \\
+&amp;= -\dfrac{1}{2\sigma^2} \sum_{i=1}^N (Y_i-X_i \beta_i)^2 - \dfrac{N}{2} \log{2\pi}{\sigma^2}  \\
+\text{LL(Matrix Form)} &amp;= -C_1 (Y - X\beta)^T(y-X\beta) - C_0 \\
+&amp;= -C_1(\beta^TX^TX\beta -2 Y^TX\beta + Y^TY) - C_0 \\
+&amp; \text{where } C_1=  -\dfrac{1}{2\sigma^2}, C_0 =  \dfrac{N}{2} \log{2\pi}{\sigma^2} \\
+\end{align*}</p>
+<p><strong>3) Log-Likelihood의 그레디언트(미분,기울기)는 0이 되어야 함:</strong></p>
+<p>\begin{align*}
+\dfrac{d}{d\beta} \text{LL} &amp;= -C_1 \left( 2X^TX \hat{\beta} - 2X^TY \right) = 0 \\
+\hat{\beta} &amp;= (X^TX)^{-1}X^T Y \\
+\end{align*}</p>
+<ul>
+<li><strong>Summary:</strong><ul>
+<li>$X^TX$ 행렬이 역행렬이 존재해야 해 추정/존재 가능  </li>
+<li>역행렬이 미존재<br>
+= $X$가 서로 독립이 아님<br>
+= $X$가 Full Rank가 아님<br>
+= $X^TX$가 양의 정부호(Positive Definite)가 아님</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>회귀계수의 분포:</strong></li>
+</ul>
+<p>\begin{align*}
+\text{Main Equation} &amp;&amp; \hat{\beta} &amp;= (X^TX)^{-1} X^T Y \\
+&amp;&amp; &amp;= (X^TX)^{-1} X^T (X \beta + \epsilon) \\
+&amp;&amp; &amp;= \beta + (X^TX)^{-1} X^T \epsilon \\
+\text{Expectation} &amp;&amp; \text{E}(\hat{\beta}) &amp;=  \text{E}( \beta + (X^TX)^{-1} X^T \epsilon ) \\
+&amp;&amp; &amp;=  \beta + (X^TX)^{-1} X^T \text{E}( \epsilon ) \\
+&amp;&amp; &amp;= \beta \\
+\text{Variance} &amp;&amp; \text{Var}(\hat{\beta}_i)  &amp;= \left( \text{Cov}(\hat{\beta}) \right)_{ii} \;\; (i=0, \ldots, K-1) \\
+\text{Covariance} &amp;&amp; \text{Cov}(\hat{\beta}) &amp;= E\left((\hat{\beta} - \beta)(\hat{\beta} - \beta)^T \right) \\
+&amp;&amp; &amp;= E\left(((X^TX)^{-1} X^T \epsilon)((X^TX)^{-1} X^T \epsilon)^T \right) \\
+&amp;&amp; &amp;= E\left((X^TX)^{-1} X^T \epsilon \epsilon^T X(X^TX)^{−1} \right) \\
+&amp;&amp; &amp;= (X^TX)^{-1} X^T E(\epsilon \epsilon^T) X(X^TX)^{−1} \\
+&amp;&amp; &amp;= (X^TX)^{-1} X^T (\sigma^2 I) X(X^TX)^{−1} \\
+&amp;&amp; &amp;= \sigma^2  (X^TX)^{-1} \\
+\text{Standard Deviation} &amp;&amp; \sqrt{\text{Var}(\hat{\beta}_i)} \approx {se_{\hat{\beta}_i}} &amp;= \sqrt{\sigma^2 \big((X^TX)^{-1}\big)_{ii}} \;\; (i=0, \ldots, K-1) \\
+\text{Asymptotic} &amp;&amp; \dfrac{\hat{\beta}_i - \beta_i}{se_{\hat{\beta}_i}} &amp;\sim t_{N-K} \;\; (i=0, \ldots, K-1) \\
+\end{align*}</p>
 
 </div>
 </div>
@@ -12597,7 +12725,33 @@ $R^2$ = $\dfrac{ESS}{TSS}$ = $\dfrac{\sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2}{\su
 </ul>
 </li>
 </ul>
-<p><strong>2) 분산분석을 통한 F-검정:</strong></p>
+<p><strong>2) t-검정:</strong> t분포를 따르는 추정계수로 독립변수와 종속변수 간의 선형관계(관련성) 존재 의사결정을 위한 신뢰성 정도</p>
+<ul>
+<li><p><strong>검정통계량(t-통계량)</strong>: <center>$t = \dfrac{\hat{\beta}_i - \beta_i}{se_{\hat{\beta}_i}}$</center></p>
+<ul>
+<li>$t$ 값이 작다는 것은 표준편차가 크다는 것 -&gt; 독립변수와 종속변수의 상관성이 낮음  </li>
+<li>$t$ 값이 크다는 것은 표준편차가 작다는 것 -&gt; 독립변수와 종속변수의 상관성이 높음  </li>
+</ul>
+</li>
+</ul>
+<blockquote><ul>
+<li><strong>가설확인</strong><ul>
+<li><strong>대중주장(귀무가설, Null Hypothesis, $H_0$)</strong><br>
+: $\beta_i = 0 \;\; (i=0, \ldots, K-1)$ / 추정계수는 0이다 / 독립변수와 종속변수의 상관관계(선형관계)가 없다</li>
+<li><strong>나의주장(대립가설, Alternate Hypothesis, $H_1$)</strong><br>
+: $\beta_i \neq 0 \;\; (i=0, \ldots, K-1)$ / 추정계수는 0이 아니다 / 독립변수와 종속변수의 상관관계(선형관계)가 있다</li>
+</ul>
+</li>
+<li><strong>의사결정</strong><ul>
+<li><strong>p-value &gt;= 내기준(ex. 0.05):</strong> 내가 분석한 계수는 대중주장과 유사하기 때문에 대중주장 참 &amp; 나의주장 거짓<br>
+<strong>: 분석한 변수는 모델링에 영향력이 없다</strong></li>
+<li><strong>p-value &lt; 내기준(ex. 0.05):</strong> 내가 분석한 계수는 대중주장을 벗어나기 때문에 대중주장 거짓 &amp; 나의주장 참<br>
+<strong>: 분석한 변수는 모델링에 영향력이 있다</strong></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><strong>3) 분산분석을 통한 F-검정:</strong></p>
 <ul>
 <li><strong>필요성:</strong> <ul>
 <li>변수의 단위 즉, 스케일이 달라지면 회귀분석과 상관없이 잔차제곱합(Residula Sum of Square) 달라짐  </li>
@@ -12606,7 +12760,7 @@ $R^2$ = $\dfrac{ESS}{TSS}$ = $\dfrac{\sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2}{\su
 </li>
 </ul>
 <ul>
-<li><strong>검정통계량(F-검정):</strong> 분산분석표(ANOVA Table)를 통해 쉽게 계산되며, $T$는 데이터의 갯수, $K$는 변수의 갯수</li>
+<li><strong>검정통계량(F-통계량):</strong> 분산분석표(ANOVA Table)를 통해 쉽게 계산되며, $T$는 데이터의 갯수, $K$는 변수의 갯수</li>
 </ul>
 <table>
 <thead><tr>
@@ -12656,30 +12810,21 @@ $R^2$ = $\dfrac{ESS}{TSS}$ = $\dfrac{\sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2}{\su
 <center>$\dfrac{ESS}{K-1} \div \dfrac{RSS}{T-K} \sim F(K-1, T-K)$</center><blockquote><ul>
 <li><strong>가설확인</strong><ul>
 <li><strong>대중주장(귀무가설, Null Hypothesis, $H_0$)</strong><br>
-: 모든 추정계수는 0이다 / 모형은 아무 효과가 없다 / $R^2$ = 0</li>
+: $\beta_0  = \beta_1 = \cdots = \beta_{K-1} = 0$ / 모든 추정계수는 0이다 / 모형은 아무 효과가 없다 / $R^2$ = 0</li>
 <li><strong>나의주장(대립가설, Alternate Hypothesis, $H_1$)</strong><br>
-: 모든 추정계수는 0이 아니다 / 모형은 효과가 있다 / $R^2 \neq 0$</li>
+: $\beta_0  \neq \beta_1 \neq \cdots \neq \beta_{K-1} \neq 0$ / 모든 추정계수는 0이 아니다 / 모형은 효과가 있다 / $R^2 \neq 0$</li>
 </ul>
 </li>
 <li><strong>의사결정</strong><ul>
-<li><strong>p-value &gt;= 내기준(ex. 0.05):</strong> 내가 수집한(분석한) 시계열 데이터가 대중주장과 유사하기 때문에 대중주장 참 &amp; 나의주장 거짓<br>
-<strong>수집한(분석한) 시계열 데이터는 단위근니 있다 / 비정상 상태이다 / 시간의존 구조이다</strong></li>
-<li><strong>p-value &lt; 내기준(ex. 0.05):</strong> 내가 수집한(분석한) 시계열 데이터가 대중주장을 벗어나기 때문에 대중주장 거짓 &amp; 나의주장 참<br>
-<strong>수집한(분석한) 시계열 데이터는 단위근이 없다 / 정상 상태이다 / 시간의존 구조가 아니다</strong></li>
+<li><strong>p-value &gt;= 내기준(ex. 0.05):</strong> 내가 분석한 결과는 대중주장과 유사하기 때문에 대중주장 참 &amp; 나의주장 거짓<br>
+<strong>: 분석한 모델링은 효과가 없다 / 모델은 데이터 패턴을 잘 추정하지 못한다</strong></li>
+<li><strong>p-value &lt; 내기준(ex. 0.05):</strong> 내가 분석한 결과는 대중주장을 벗어나기 때문에 대중주장 거짓 &amp; 나의주장 참<br>
+<strong>: 분석한 모델링은 효과가 있다 / 모델은 데이터 패턴을 잘 추정한다</strong></li>
 </ul>
 </li>
 </ul>
 </blockquote>
 <p><strong>3) 정보량기준(Information Criterion):</strong> 회귀분석 외에도 다양한 알고리즘에 활용, 값이 작을수록 올바른 모형</p>
-<blockquote><p><strong>"회귀분석의 확률론적 모델(Probabilistic Model)"</strong></p>
-</blockquote>
-<p>\begin{align*}
-Y \approx \hat{Y} &amp;= f(X_1, X_2, ..., X_k) \\
-&amp;= \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots + \beta_kX_k \\
-&amp;= E(Y|X_1, X_2, ... , X_k) \\ 
-&amp;= \displaystyle\prod_{i=1}^T p(Y_i|X_{1i}, X_{2i}, ... , X_{ki}) \\
-&amp;= \displaystyle \sum_{i=1}^T log(p(Y_i|X_{1i}, X_{2i}, ..., X_{ki})) \approx L \\
-\end{align*}</p>
 <ul>
 <li><strong><a href="https://en.wikipedia.org/wiki/Akaike_information_criterion">AIC(Akaike Information Criterion)</a></strong><br>
 : 모형과 데이터의 확률 분포 사이의 Kullback-Leibler 수준을 가장 크게하기 위한 시도</li>
@@ -12689,32 +12834,6 @@ Y \approx \hat{Y} &amp;= f(X_1, X_2, ..., X_k) \\
 : 데이터가 exponential family라는 가정하에 주어진 데이터에서 모형의 likelihood를 측정하기 위한 값에서 유도</li>
 </ul>
 <center>$BIC = -2log(L) + Klog(T)$</center><center><img src='Image/AIC_BIC.gif' width='600'></center>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="&#44160;&#51613;&#48169;&#54637;(&#44228;&#49688;&#52628;&#51221;)">&#44160;&#51613;&#48169;&#54637;(&#44228;&#49688;&#52628;&#51221;)<a class="anchor-link" href="#&#44160;&#51613;&#48169;&#54637;(&#44228;&#49688;&#52628;&#51221;)">&#182;</a></h2><blockquote><p><strong>"잔차제곱합(Residual Sum of Squares)을 최소로하는 $\beta$를 추정"</strong></p>
-</blockquote>
-<p><strong>1) 잔차벡터(Residual Vector):</strong></p>
-<center>$\epsilon = Y - \hat{Y} = Y - X\beta$</center><p><strong>2) 잔차제곱합(Residual Sum of Squares):</strong></p>
-<center>$RSS = \epsilon^T\epsilon = (Y - X\beta)^T(Y - X\beta) = Y^TY-2Y^TX\beta+\beta^TX^TX\beta$</center><p><strong>3) 잔차제곱합의 그레디언트(Gradient):</strong></p>
-<center>$\dfrac{dRSS}{d\beta} = -2X^TY + 2X^TX\beta$</center><p><strong>4) 잔차가 최소가 되는 최적화 조건은 최저점에서의 그레디언트(미분,기울기)이 0이 되어야 함:</strong></p>
-<center>$\dfrac{dRSS}{d\beta} = 0$</center><p><strong>5) 최적화를 위한 잔차제곱합의 그레디언트(Gradient):</strong></p>
-<center>$\dfrac{dRSS}{d\beta} = -2X^TY + 2X^TX\beta = 0 \\ X^TX\beta = X^TY$</center><p><strong>6) 추정된 계수:</strong></p>
-<center>$\beta = (X^TX)^{-1}X^TY$</center><ul>
-<li><strong>Summary:</strong><ul>
-<li>$X^TX$ 행렬이 역행렬이 존재해야 해 추정/존재 가능  </li>
-<li>역행렬이 미존재<br>
-= $X$가 서로 독립이 아님<br>
-= $X$가 Full Rank가 아님<br>
-= $X^TX$가 양의 정부호(Positive Definite)가 아님</li>
-</ul>
-</li>
-</ul>
-
 </div>
 </div>
 </div>
@@ -12778,16 +12897,18 @@ Y \approx \hat{Y} &amp;= f(X_1, X_2, ..., X_k) \\
 <li><strong>statsmodels 데이터셋 예시:</strong>  </li>
 </ul>
 
-<pre><code>#타이타닉호의 탑승자들에 대한 데이터
-data = sm.datasets.get_rdataset("Titanic", package="datasets")
-#미국의 강수량 데이터
-data = sm.datasets.get_rdataset("precip")
+<pre><code>#대기중 CO2농도 데이터
+data = get_rdataset("CO2", package="datasets")
 #황체형성 호르몬(Luteinizing Hormone)의 수치를 나타내는 시계열 데이터
 data = sm.datasets.get_rdataset("lh")
 #1974-1979년 사이의 영국의 호흡기 질환 사망자 수를 나타내는 시계열 데이터
 data = sm.datasets.get_rdataset("deaths", "MASS")
 #1949-1960년 사이의 국제 항공 운송인원을 나타내는 시계열 데이터
-data = sm.datasets.get_rdataset("AirPassengers")</code></pre>
+data = sm.datasets.get_rdataset("AirPassengers")
+#미국의 강수량 데이터
+data = sm.datasets.get_rdataset("precip")
+#타이타닉호의 탑승자들에 대한 데이터
+data = sm.datasets.get_rdataset("Titanic", package="datasets")</code></pre>
 <ul>
 <li><strong>Output:</strong><ul>
 <li>package: 데이터를 제공하는 R 패키지 이름</li>
