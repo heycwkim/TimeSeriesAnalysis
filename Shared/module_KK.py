@@ -1,6 +1,10 @@
 # Install packages from jupyter Notebook
+# !conda install -c conda-forge hmmlearn
 # !python -m pip install --user --upgrade pip
+# !pip install pandas-datareader
+# !pip install tqdm
 # !pip install missingno
+# !pip install hmmlearn
 # !pip install xgboost
 # !pip install lightgbm
 # !pip install pyramid-arima
@@ -22,6 +26,7 @@ from io import BytesIO
 from zipfile import ZipFile
 
 # datasets
+import pandas_datareader.data as web
 from statsmodels import datasets
 from sklearn import datasets
 
@@ -32,7 +37,7 @@ pd.options.display.max_rows = 10
 pd.options.display.max_columns = 20
 import numpy as np
 from patsy import dmatrix
-import itertools
+from itertools import product
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
@@ -51,7 +56,7 @@ import statsmodels.api as sm
 import statsmodels.tsa.api as smt
 import statsmodels.formula.api as smf
 from statsmodels.stats.outliers_influence import variance_inflation_factor
-import scipy as sp
+from scipy import stats
 
 # Regression
 from sklearn.linear_model import LinearRegression, Ridge, Lasso, ElasticNet
@@ -313,8 +318,8 @@ def error_analysis(Y_Data, Target_name, X_Data, graph_on=False):
 
         # Autocorrelation Analysis
         figure, axes = plt.subplots(2,1,figsize=(12,5))
-        sm.graphics.tsa.plot_acf(Y_Data[Target_name], lags=100, use_vlines=True, ax=axes[0])
-        sm.graphics.tsa.plot_pacf(Y_Data[Target_name], lags=100, use_vlines=True, ax=axes[1])      
+        sm.tsa.graphics.plot_acf(Y_Data[Target_name], lags=100, use_vlines=True, ax=axes[0])
+        sm.tsa.graphics.plot_pacf(Y_Data[Target_name], lags=100, use_vlines=True, ax=axes[1])
 
     ##### Error Analysis(Statistics)
     # Checking Stationarity
