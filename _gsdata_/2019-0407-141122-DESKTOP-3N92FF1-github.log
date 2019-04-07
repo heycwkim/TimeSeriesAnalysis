@@ -1,7 +1,0 @@
-2019-04-07 14:11:23: -- 분석이 On File Change Incremental에 의해 시작되었습니다.
-2019-04-07 14:11:24: 오른쪽: State File has changed, so re-read it: D:/[Lecture]/_gsdata_/_file_state_v4._gs
-2019-04-07 14:11:24: 오른쪽: State file does not exist: D:/[Lecture]/_gsdata_/_file_state_v4._gs
-2019-04-07 14:11:24: 변경됨: 0, 불일치: 0, 시간 복사: 0, 상태 복사: 8, 오류: 0, All: 388
-2019-04-07 14:11:24: == On File Change Incremental에 의해 동기화가 시작되었습니다.
-2019-04-07 14:11:24: == 동기화 완료. 시간: 00:00:00, 속도: 0바이트/s, 완료 항목: 8, 오류 항목: 0
-2019-04-07 14:11:24: 
