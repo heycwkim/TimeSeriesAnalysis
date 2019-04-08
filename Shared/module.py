@@ -80,7 +80,7 @@ from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 
 # Time series
 from statsmodels.tsa.api import SimpleExpSmoothing, Holt, ExponentialSmoothing
-from pyramid.arima import auto_arima
+# from pyramid.arima import auto_arima
 
 # Model selection
 from sklearn.model_selection import train_test_split,cross_validate
