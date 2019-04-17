@@ -11,11 +11,11 @@
 # !pip install arch
 # !pip install pyramid-arima
 
+# Auto reload
 # %reload_ext autoreload
 # %autoreload 2
 
 # Ignore the warnings
-# Auto reload
 import warnings
 warnings.filterwarnings('always')
 warnings.filterwarnings('ignore')
@@ -33,22 +33,22 @@ from statsmodels import datasets
 from sklearn import datasets
 
 # Data manipulation, visualization and useful functions
-import pandas as pd
-pd.options.display.float_format = '{:,.2f}'.format
-pd.options.display.max_rows = 10
-pd.options.display.max_columns = 20
-import numpy as np
+import numpy as np # vectors and matrices
+import pandas as pd # tables and data manipulations
+pd.options.display.float_format = '{:,.2f}'.format # output format
+pd.options.display.max_rows = 10 # display row numbers
+pd.options.display.max_columns = 20 # display column numbers
 from patsy import dmatrix
-from itertools import product
-from tqdm import tqdm
-import matplotlib.pyplot as plt
+from itertools import product # iterative combinations
+from tqdm import tqdm # excution time
+import matplotlib.pyplot as plt # plots
 import matplotlib.dates as mdates
 import matplotlib.mlab as mlab
 from matplotlib.ticker import FuncFormatter
 from matplotlib.ticker import StrMethodFormatter
 from matplotlib.ticker import PercentFormatter
-import seaborn as sns
-import missingno as msno
+import seaborn as sns # plots
+import missingno as msno # plots
 
 # Modeling algorithms
 # General(Statistics/Econometrics)
@@ -59,6 +59,7 @@ import statsmodels.tsa.api as smt
 import statsmodels.formula.api as smf
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 from scipy import stats
+from scipy.stats import norm
 
 # Regression
 from sklearn.linear_model import LinearRegression, Ridge, Lasso, ElasticNet
@@ -80,7 +81,9 @@ from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 
 # Time series
 from statsmodels.tsa.api import SimpleExpSmoothing, Holt, ExponentialSmoothing
-# from pyramid.arima import auto_arima
+import arch
+## for Python 3.6: Anaconda3-5.2.0-Windows-x86_64.exe
+## from pyramid.arima import auto_arima
 
 # Model selection
 from sklearn.model_selection import train_test_split,cross_validate
@@ -291,6 +294,38 @@ def evaluation_trte(Y_real_tr, Y_pred_tr, Y_real_te, Y_pred_te, graph_on=False):
 
 
 ### Error analysis
+def stationarity_adf_test(Y_Data, Target_name):
+    if len(Target_name) == 0:
+        Stationarity_adf = pd.Series(sm.tsa.stattools.adfuller(Y_Data)[0:4],
+                                     index=['Test Statistics', 'p-value', 'Used Lag', 'Used Observations'])
+        for key, value in sm.tsa.stattools.adfuller(Y_Data)[4].items():
+            Stationarity_adf['Critical Value(%s)'%key] = value
+            Stationarity_adf['Maximum Information Criteria'] = sm.tsa.stattools.adfuller(Y_Data)[5]
+            Stationarity_adf = pd.DataFrame(Stationarity_adf, columns=['Stationarity_adf'])
+    else:
+        Stationarity_adf = pd.Series(sm.tsa.stattools.adfuller(Y_Data[Target_name])[0:4],
+                                     index=['Test Statistics', 'p-value', 'Used Lag', 'Used Observations'])
+        for key, value in sm.tsa.stattools.adfuller(Y_Data[Target_name])[4].items():
+            Stationarity_adf['Critical Value(%s)'%key] = value
+            Stationarity_adf['Maximum Information Criteria'] = sm.tsa.stattools.adfuller(Y_Data[Target_name])[5]
+            Stationarity_adf = pd.DataFrame(Stationarity_adf, columns=['Stationarity_adf'])
+    return Stationarity_adf
+
+def stationarity_kpss_test(Y_Data, Target_name):
+    if len(Target_name) == 0:
+        Stationarity_kpss = pd.Series(sm.tsa.stattools.kpss(Y_Data)[0:3],
+                                      index=['Test Statistics', 'p-value', 'Used Lag'])
+        for key, value in sm.tsa.stattools.kpss(Y_Data)[3].items():
+            Stationarity_kpss['Critical Value(%s)'%key] = value
+            Stationarity_kpss = pd.DataFrame(Stationarity_kpss, columns=['Stationarity_kpss'])
+    else:
+        Stationarity_kpss = pd.Series(sm.tsa.stattools.kpss(Y_Data[Target_name])[0:3],
+                                      index=['Test Statistics', 'p-value', 'Used Lag'])
+        for key, value in sm.tsa.stattools.kpss(Y_Data[Target_name])[3].items():
+            Stationarity_kpss['Critical Value(%s)'%key] = value
+            Stationarity_kpss = pd.DataFrame(Stationarity_kpss, columns=['Stationarity_kpss'])
+    return Stationarity_kpss
+
 def error_analysis(Y_Data, Target_name, X_Data, graph_on=False):
     for x in Target_name:
         Target_name = x
@@ -325,12 +360,8 @@ def error_analysis(Y_Data, Target_name, X_Data, graph_on=False):
     ##### Error Analysis(Statistics)
     # Checking Stationarity
     # Null Hypothesis: The Time-series is non-stationalry
-    Stationarity = pd.Series(sm.tsa.stattools.adfuller(Y_Data[Target_name])[0:4],
-                             index=['Test Statistics', 'p-value', 'Used Lag', 'Used Observations'])
-    for key, value in sm.tsa.stattools.adfuller(Y_Data[Target_name])[4].items():
-        Stationarity['Critical Value(%s)'%key] = value
-        Stationarity['Maximum Information Criteria'] = sm.tsa.stattools.adfuller(Y_Data[Target_name])[5]
-        Stationarity = pd.DataFrame(Stationarity, columns=['Stationarity'])
+    Stationarity_adf = stationarity_adf_test(Y_Data, Target_name)
+    Stationarity_kpss = stationarity_kpss_test(Y_Data, Target_name)
 
     # Checking of Normality
     # Null Hypothesis: The residuals are normally distributed
@@ -347,7 +378,7 @@ def error_analysis(Y_Data, Target_name, X_Data, graph_on=False):
     # Null Hypothesis: Error terms are homoscedastic
     Heteroscedasticity = pd.DataFrame([sm.stats.diagnostic.het_goldfeldquandt(Y_Data[Target_name], X_Data.values, alternative='two-sided')],
                                       index=['Heteroscedasticity'], columns=['Test Statistics', 'p-value', 'Alternative']).T
-    Score = pd.concat([Stationarity, Normality, Autocorrelation, Heteroscedasticity], join='outer', axis=1)
+    Score = pd.concat([Stationarity_adf, Stationarity_kpss, Normality, Autocorrelation, Heteroscedasticity], join='outer', axis=1)
     Score = Score.loc[['Test Statistics', 'p-value', 'Alternative', 'Used Lag', 'Used Observations',
                        'Critical Value(1%)', 'Critical Value(5%)', 'Critical Value(10%)', 'Maximum Information Criteria'],:]
     return Score
