@@ -13123,7 +13123,7 @@ div#notebook {
 <script>
 $( document ).ready(function(){
 
-            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": false, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {}, "toc_section_display": true, "toc_window_display": true};
+            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": false, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {"height": "1058px", "left": "579px", "top": "224px", "width": "443.594px"}, "toc_section_display": true, "toc_window_display": true};
 
             // fire the main function with these parameters
             require(['nbextensions/toc2/toc2'], function (toc2) {
@@ -13577,7 +13577,7 @@ $( document ).ready(function(){
 <li><strong>왜도(Skewness)</strong>: 평균을 중심으로 좌우로 데이터가 편향되어 있는 정도</li>
 <li><strong>첨도(Kurtosis)</strong>: 뾰족함 정도</li>
 </ul>
-<center><img src='Image/Statistics+deviation+and+variance.jpg' width='600'></center>
+<center><img src='Image/Statistics_Skew_Kurt.gif' width='600'></center>
 </div>
 </div>
 </div>
@@ -13608,7 +13608,7 @@ $( document ).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="&#44032;&#49444;-&#49444;&#51221;-&#48169;&#48277;:">&#44032;&#49444; &#49444;&#51221; &#48169;&#48277;:<a class="anchor-link" href="#&#44032;&#49444;-&#49444;&#51221;-&#48169;&#48277;:">&#182;</a></h3><ol>
+<h3 id="&#44032;&#49444;&#49444;&#51221;-&#51312;&#44148;-3&#44032;&#51648;:">&#44032;&#49444;&#49444;&#51221; &#51312;&#44148; 3&#44032;&#51648;:<a class="anchor-link" href="#&#44032;&#49444;&#49444;&#51221;-&#51312;&#44148;-3&#44032;&#51648;:">&#182;</a></h3><ol>
 <li><p><strong>상호배반적(Mutually Exclusive)</strong>: 나의주장과 대중주장은 모호함 없이 독립적이어야 하며 더하면 다른주장은 없어야 함</p>
 <ul>
 <li><p>거짓말쟁이를 어떻게 정의하지? 어느 수준이 거짓말쟁이라는거지?</p>
@@ -13691,28 +13691,29 @@ $( document ).ready(function(){
 </ol>
 </li>
 </ul>
-<center><img src='Image/CLT.jpg' width='600'></center><blockquote><p><strong>나의주장이 틀렸다면 양치기들과 일반인들의 거짓말 빈도가 전혀 차이가 없어야 함</strong><br>
-<strong>모든 양치기들을 조사하지 않더라도 Sample로 추출한 양지기의 거짓말 횟수 평균은 일반인의 거짓말 횟수 평균에 수렴해야 함</strong></p>
-<h2 id="&#50577;&#52824;&#44592;&#51032;-&#44144;&#51667;&#47568;-&#54943;&#49688;-&#54217;&#44512;&#51060;-&#51068;&#48152;&#51064;&#51032;-&#44144;&#51667;&#47568;-&#54943;&#49688;-&#54217;&#44512;&#48372;&#45796;-&#44057;&#44144;&#45208;-&#51201;&#45908;&#46972;&#46020;-&#45208;&#51032;&#51452;&#51109;&#51008;-&#53952;&#47536;-&#44163;"><strong>&#50577;&#52824;&#44592;&#51032; &#44144;&#51667;&#47568; &#54943;&#49688; &#54217;&#44512;&#51060; &#51068;&#48152;&#51064;&#51032; &#44144;&#51667;&#47568; &#54943;&#49688; &#54217;&#44512;&#48372;&#45796; &#44057;&#44144;&#45208; &#51201;&#45908;&#46972;&#46020; &#45208;&#51032;&#51452;&#51109;&#51008; &#53952;&#47536; &#44163;</strong><a class="anchor-link" href="#&#50577;&#52824;&#44592;&#51032;-&#44144;&#51667;&#47568;-&#54943;&#49688;-&#54217;&#44512;&#51060;-&#51068;&#48152;&#51064;&#51032;-&#44144;&#51667;&#47568;-&#54943;&#49688;-&#54217;&#44512;&#48372;&#45796;-&#44057;&#44144;&#45208;-&#51201;&#45908;&#46972;&#46020;-&#45208;&#51032;&#51452;&#51109;&#51008;-&#53952;&#47536;-&#44163;">&#182;</a></h2><p><strong>1. 가설 설정</strong></p>
+<center><img src='Image/CLT.jpg' width='600'></center><blockquote><p><strong>"나의주장이 틀렸다면,"</strong></p>
+<blockquote><p><strong>- 양치기들과 일반인들의 거짓말 빈도가 전혀 차이가 없어야 함</strong><br>
+<strong>- 모든 양치기들을 조사하지 않더라도 Sample로 추출한 양지기의 거짓말 횟수 평균은 일반인의 거짓말 횟수 평균에 수렴해야 함</strong><br>
+<strong>- 양치기의 거짓말 횟수 평균이 일반인의 거짓말 횟수 평균보다 같거나 적어야 함</strong></p>
+</blockquote>
+</blockquote>
+<hr>
+<p><strong>1. 가설 설정</strong></p>
 <ul>
-<li><strong>대립가설(Alternative Hypothesis, $H1$)</strong>: 나의주장, 분석 방법별 정해져 있음(보통 차이가 있다/영향력이 있다/연관성이 있다/효과가 있다)  </li>
+<li><strong>대립가설(Alternative Hypothesis, $H1$)</strong>: 나의주장, 분석 방법별 정해져 있음(보통 차이가 있다/영향력이 있다/연관성이 있다/효과가 있다)  <blockquote><ul>
 <li>대립가설: 현재 대한민국에 있는 양치기들은 일반인 대비 거짓말을 많이 한다!</li>
-<li><strong>귀무가설(Null Hypothesis, $H0$)</strong>: 대중주장, 분석 방법별 정해져 있음(보통 차이가 없다/영향력이 없다/연관성이 없다/효과가 없다)  </li>
-<li>귀무가설: 현재 대한민국에 있는 양치기들은 일반인 대비 거짓말을 많이 하지 않는다!  </li>
 </ul>
 </blockquote>
-<p><strong>2. 유의수준 설정</strong></p>
-<ul>
-<li><strong>유의수준(Significant Level, $\alpha$)</strong>: 가설을 검정할 때 이 기준의 확률로 발생하지 않을 일이 발생한거면 대립가설(나의주장)을 채택<blockquote><ul>
-<li>유의수준 20%: 100번 샘플들을 뽑아 실험을 했을 때, 20번 미만으로 발생할 상황이 발생하면 대립가설(나의주장) 채택</li>
-<li>유의수준 5%: 100번 샘플들을 뽑아 실험을 했을 때, 5번 미만으로 발생할 상황이 발생하면 대립가설(나의주장) 채택</li>
+</li>
+<li><strong>귀무가설(Null Hypothesis, $H0$)</strong>: 대중주장, 분석 방법별 정해져 있음(보통 차이가 없다/영향력이 없다/연관성이 없다/효과가 없다)  <blockquote><ul>
+<li>귀무가설: 현재 대한민국에 있는 양치기들은 일반인 대비 거짓말을 많이 하지 않는다!  </li>
 </ul>
 </blockquote>
 </li>
 </ul>
-<p><strong>3. 검정통계량 및 유의확률 추정</strong></p>
+<p><strong>2. 검정통계량 및 유의확률 추정</strong></p>
 <ul>
-<li><p><strong><a href="https://en.wikipedia.org/wiki/Test_statistic">검정통계량(Test Statistics)</a></strong>: 대립가설과 귀무가설을 비교하기 위한 "점추정" 검증(Evaluation)지표값</p>
+<li><p><strong><a href="https://en.wikipedia.org/wiki/Test_statistic">검정통계량(Test Statistics)</a></strong>: 대립가설(나의주장)과 귀무가설(대중주장)을 비교하기 위한 검증(Evaluation)지표값, 일명 "점추정"</p>
 <blockquote><ul>
 <li>검정통계량: ${샘플집단~~양치기~~거짓말~~빈도~~-~~샘플집단~~일반인~~거짓말~~빈도 \over 샘플집단~~양치기~~거짓말~~빈도~~표준편차}$<blockquote><ul>
 <li>양치기와 일반인의 거짓말 빈도가 차이가 없다면 이상적인 검정통계량은 0이고 나의주장 틀린 것</li>
@@ -13730,7 +13731,9 @@ $( document ).ready(function(){
 </ul>
 </blockquote>
 </li>
-<li><p><strong>유의확률(p-value)</strong>: 귀무가설이 타당할 경우 검정통계량으로 봤을 때 대립가설이 발생할 확률</p>
+<li><p><strong>신뢰구간(Confidence Interval)</strong>: 검정통계량이 발생가능한 구간, 일명 "구간추정"</p>
+</li>
+<li><p><strong>유의확률(p-value)</strong>: 귀무가설(대중주장)이 참일 경우 검정통계량 값으로 대립가설(나의주장)이 발생할 확률</p>
 <blockquote><ul>
 <li>유의확률 10%: 100번 샘플들을 뽑아 실험을 했을 때, 일반인들 보다 양치기들의 거짓말 수가 많을 확률은 10번 정도임  <center><img src='Image/Statistics_p-value.jpeg' width='600'></center></li>
 </ul>
@@ -13739,14 +13742,16 @@ $( document ).ready(function(){
 </ul>
 <p><strong>4. (나의주장) 기각/채택 의사결정</strong></p>
 <ul>
-<li><strong>유의수준(Significant Level, $\alpha$)</strong>: 가설을 검정할 때 이 기준의 확률로 발생하지 않을 일이 발생한거면 대립가설(나의주장)을 채택<blockquote><ul>
-<li>유의수준 20%: 100번 샘플들을 뽑아 실험을 했을 때, 20번 미만으로 발생할 상황이 발생하면 대립가설(나의주장) 채택<blockquote><ul>
-<li>100번 중 20번 미만으로 발생할 상황을 희박한 경우로 보는데, 나의 데이터상 양치기가 일반인보다 거짓말을 많이 하는 경우가 100번 중 10번 정도 발생하는 희박한 상황이 발생한 것이기 때문에 나의주장이 옳다!</li>
+<li><strong>유의수준(Significant Level, $\alpha$)</strong>: 대중주장 내에서 나의주장을 참이라 여길 기준<blockquote><ul>
+<li>유의수준 20%: 100번 샘플들을 뽑아 실험을 했을 때, 20번 미만 발생할 상황이 발생하면 대립가설(나의주장) 채택<blockquote><ul>
+<li>대중주장을 참이라 여길 때 100번 중 20번 미만 발생할 상황을 희박한 경우로 보는데,<br>
+나의 데이터상 양치기가 일반인보다 거짓말을 많이 하는 경우가 100번 중 10번 정도 발생하는 희박한 상황이 발생한 것이기 때문에 나의주장이 옳다!</li>
 </ul>
 </blockquote>
 </li>
-<li>유의수준 5%: 100번 샘플들을 뽑아 실험을 했을 때, 5번 미만으로 발생할 상황이 발생하면 대립가설(나의주장) 채택<blockquote><ul>
-<li>100번 중 5번 미만으로 발생할 상황을 희박한 경우로 보는데, 나의 데이터상 양치기가 일반인보다 거짓말을 많이 하는 경우가 100번 중 10번 정도 발생하는 일반적인(희박하지 않은) 상황이기 때문에 나의주장이 옳지 않다!</li>
+<li>유의수준 5%: 100번 샘플들을 뽑아 실험을 했을 때, 5번 미만 발생할 상황이 발생하면 대립가설(나의주장) 채택<blockquote><ul>
+<li>대중주장을 참이라 여길 때 100번 중 5번 미만 발생할 상황을 희박한 경우로 보는데,<br>
+나의 데이터상 양치기가 일반인보다 거짓말을 많이 하는 경우가 100번 중 10번 정도 발생하는 일반적인(희박하지 않은) 상황이기 때문에 나의주장이 옳지 않다!</li>
 </ul>
 </blockquote>
 </li>
@@ -13754,12 +13759,11 @@ $( document ).ready(function(){
 </blockquote>
 </li>
 <li><strong>신뢰수준(Confidence Level)</strong>: 1-유의수준 <blockquote><ul>
-<li>신뢰수준 80%: 양치기들이 일반인들보다 거짓말을 많이 할 확률은 80%이다(100번 실험 중 80번이다)</li>
-<li>신뢰수준 95%: 양치기들이 일반인들보다 거짓말을 많이 하지 않을 확률은 95%이다(100번 실험 중 95번이다)</li>
+<li>신뢰수준 80%: 양치기들이 일반인들보다 거짓말을 많이 할 확률은 20%이다(100번 실험 중 많아야 20번이다)</li>
+<li>신뢰수준 95%: 양치기들이 일반인들보다 거짓말을 많이 하지 않을 확률은 5%이다(100번 실험 중 많아야 5번이다)</li>
 </ul>
 </blockquote>
 </li>
-<li><strong>신뢰구간(Confidence Interval)</strong>: 신뢰수준에 따른 검정통계량의 구간, 일명 "구간추정"  </li>
 </ul>
 <center><img src='Image/Statistical-Significance-P-Value.png' width='600'></center><center><img src='Image/Statistics_Confidence_Interval1.png' width='600'></center><ul>
 <li><strong>양측검정/좌측검정/우측검정</strong>:</li>
