@@ -13149,7 +13149,7 @@ $( document ).ready(function(){
 <strong>내가 풀어야 할 문제가 무엇인지 알면 문제 기획/접근/해결 방향은 단순</strong></p>
 <blockquote><p>1) 문제가 어디에 속하는지 -&gt; "분석기획(가설/방향)" 가능<br>
 2) 알고리즘마다 입력은 무엇인지 -&gt; "데이터전처리(준비)" 가능<br>
-3) 알고리즘마차 출력은 무엇인지 -&gt; "결과해석(설명/검증)" 가능</p>
+3) 알고리즘마다 출력은 무엇인지 -&gt; "결과해석(설명/검증)" 가능</p>
 </blockquote>
 </blockquote>
 <ul>
@@ -13170,6 +13170,12 @@ $( document ).ready(function(){
 </thead>
 <tbody>
 <tr>
+<td>-</td>
+<td><img src='Image/Supervised-Learning-Algorithms.png' width='150'></td>
+<td><img src='Image/Unsupervised-Learning-Algorithms.png' width='150'></td>
+<td><img src='Image/Semi-supervised-Learning-Algorithms.png' width='150'></td>
+</tr>
+<tr>
 <td>Input Data</td>
 <td>labeled</td>
 <td>unlabeled</td>
@@ -13180,12 +13186,6 @@ $( document ).ready(function(){
 <td>labeled</td>
 <td>unlabeled</td>
 <td>labeled + unlabeled</td>
-</tr>
-<tr>
-<td>-</td>
-<td><img src='Image/Supervised-Learning-Algorithms.png' width='150'></td>
-<td><img src='Image/Unsupervised-Learning-Algorithms.png' width='150'></td>
-<td><img src='Image/Semi-supervised-Learning-Algorithms.png' width='150'></td>
 </tr>
 </tbody>
 </table>
@@ -13214,6 +13214,14 @@ $( document ).ready(function(){
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><img src='Image/Regression-Algorithms.png' width='150'></td>
+<td><img src='Image/Instance-based-Algorithms.png' width='150'></td>
+<td><img src='Image/Regularization-Algorithms.png' width='150'></td>
+<td><img src='Image/Decision-Tree-Algorithms.png' width='150'></td>
+<td><img src='Image/Bayesian-Algorithms.png' width='150'></td>
+<td><img src='Image/Artificial-Neural-Network-Algorithms.png' width='150'></td>
+</tr>
 <tr>
 <td>Ordinary Least Squares Regression (OLSR)</td>
 <td>k-Nearest Neighbor (kNN)</td>
@@ -13270,14 +13278,6 @@ $( document ).ready(function(){
 <td>-</td>
 <td>-</td>
 </tr>
-<tr>
-<td><img src='Image/Regression-Algorithms.png' width='150'></td>
-<td><img src='Image/Instance-based-Algorithms.png' width='150'></td>
-<td><img src='Image/Regularization-Algorithms.png' width='150'></td>
-<td><img src='Image/Decision-Tree-Algorithms.png' width='150'></td>
-<td><img src='Image/Bayesian-Algorithms.png' width='150'></td>
-<td><img src='Image/Artificial-Neural-Network-Algorithms.png' width='150'></td>
-</tr>
 </tbody>
 </table>
 
@@ -13297,6 +13297,13 @@ $( document ).ready(function(){
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><img src='Image/Clustering-Algorithms.png' width='150'></td>
+<td><img src='Image/Assoication-Rule-Learning-Algorithms.png' width='150'></td>
+<td><img src='Image/Dimensional-Reduction-Algorithms.png' width='150'></td>
+<td><img src='Image/Ensemble-Algorithms.png' width='150'></td>
+<td><img src='Image/Deep-Learning-Algorithms.png' width='150'></td>
+</tr>
 <tr>
 <td>k-Means</td>
 <td>Apriori algorithm</td>
@@ -13367,13 +13374,6 @@ $( document ).ready(function(){
 <td>-</td>
 <td>-</td>
 </tr>
-<tr>
-<td><img src='Image/Clustering-Algorithms.png' width='150'></td>
-<td><img src='Image/Assoication-Rule-Learning-Algorithms.png' width='150'></td>
-<td><img src='Image/Dimensional-Reduction-Algorithms.png' width='150'></td>
-<td><img src='Image/Ensemble-Algorithms.png' width='150'></td>
-<td><img src='Image/Deep-Learning-Algorithms.png' width='150'></td>
-</tr>
 </tbody>
 </table>
 
@@ -13411,11 +13411,10 @@ $x$ = {$\dots$, $x_{-2}$, $x_{-1}$, $x_{0}$, $x_{1}$, $x_{2}$, $\dots$} or {$x_t
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="&#46021;&#51088;&#51201;&#51064;-&#49884;&#44228;&#50676;-&#45824;&#54364;-&#49457;&#48516;&#46308;-7&#51333;">&#46021;&#51088;&#51201;&#51064; &#49884;&#44228;&#50676; &#45824;&#54364; &#49457;&#48516;&#46308; 7&#51333;<a class="anchor-link" href="#&#46021;&#51088;&#51201;&#51064;-&#49884;&#44228;&#50676;-&#45824;&#54364;-&#49457;&#48516;&#46308;-7&#51333;">&#182;</a></h2><blockquote><p><strong>데이터 과학자로서 이미 수동/자동 변수 생성(Feature Engineering)에 익숙하지만, 신규 변수를 생성하는 것은 분석에서 가장 중요하고 시간이 많이 걸리는 작업 중 하나입니다.</strong></p>
-<ul>
-<li><strong>변수 생성시 주의할 점</strong><br>
+<blockquote><p><strong>"변수 생성시 주의할 점!"</strong><br>
 1) 미래의 실제 종속변수 예측값이 어떤 독립/종속변수의 FE에 의해 효과가 있을지 단정할 수 없음<br>
-2) 독립변수의 예측값을 FE를 통해 생성될 수 있지만 이는 종속변수의 예측에 오류증가를 야기할 수 있음  </li>
-</ul>
+2) 독립변수의 예측값을 FE를 통해 생성될 수 있지만 이는 종속변수의 예측에 오류증가를 야기할 수 있음</p>
+</blockquote>
 </blockquote>
 <ul>
 <li><strong>빈도(Frequency)</strong>: 계절성 패턴(Seasonality)이 나타나기 전까지의 데이터 갯수로 사람이 정해야 함 </li>
