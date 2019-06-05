@@ -1,0 +1,31 @@
+[Week1]
+> 이론: Lecture1
+> 실습: installation(강의자료 및 프로그램준비) + Practice0 + Practice1
+
+[Week2]
+> 이론: Lecture2 ~2.1
+> 실습: Practice3 ~4
+
+[Week3]
+> 이론:
+> 실습:
+
+[Week4]
+> 이론:
+> 실습:
+
+[Week5]
+> 이론:
+> 실습:
+
+[Week6]
+> 이론:
+> 실습:
+
+[Week7]
+> 이론:
+> 실습:
+
+[Week8]
+> 이론:
+> 실습:
