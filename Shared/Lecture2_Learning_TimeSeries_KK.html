@@ -13109,28 +13109,6 @@ div#notebook {
     });
     </script>
     <!-- End of mathjax configuration --></head>
-
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-
-<link rel="stylesheet" type="text/css" href="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/main.css">
-
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<script src="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/toc2.js"></script>
-
-<script>
-$( document ).ready(function(){
-
-            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": false, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {"height": "calc(100% - 180px)", "left": "10px", "top": "150px", "width": "446px"}, "toc_section_display": true, "toc_window_display": true};
-
-            // fire the main function with these parameters
-            require(['nbextensions/toc2/toc2'], function (toc2) {
-                toc2.table_of_contents(cfg);
-            });
-    });
-</script>
 <body>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
@@ -13701,36 +13679,212 @@ $x$ = {$\dots$, $x_{-2}$, $x_{-1}$, $x_{0}$, $x_{1}$, $x_{2}$, $\dots$} or {$x_t
 <li>대부분의 기계학습 모델은 통계분포에 기반하지 않기 때문에 점추정 알고리즘  </li>
 <li>신뢰구간의 정확성은 확신 할 수 없지만 점추정 보다 다양한 해석을 가능하게 함</li>
 </ul>
-<p><strong>"정확성 vs. 설명력 반비례 관례 존재"</strong></p>
-<ul>
-<li><p>기계학습 알고리즘에 대해,</p>
-<center><img src='Image/Performance_Explanability.png' width='600'></center></li>
-<li><p>시계열 알고리즘에 대해,</p>
-</li>
-</ul>
 </blockquote>
 <ul>
-<li><strong>Dynamic Linear Model:</strong> <ul>
+<li><strong>"정확성 vs. 설명력 반비례 관계 존재"</strong><blockquote><p><strong>설명력 최근 연구동향:</strong></p>
+<ul>
+<li><a href="https://blog.fastforwardlabs.com/2017/09/01/LIME-for-couples.html">LIME</a></li>
+<li><a href="https://bdtechtalks.com/2019/01/10/darpa-xai-explainable-artificial-intelligence/">DARPA</a><center><img src='Image/Performance_Explanability.png' width='600'></center>
+<center><img src='Image/Performance_Explanability_TimeSeries.png' width='600'></center></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><strong>대표적 알고리즘 예시:</strong></li>
+</ul>
+<blockquote><p><strong>Dynamic Linear Model:</strong></p>
+<ul>
 <li>Bayesian-based Models</li>
 <li><a href="https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity">Generalized Autoregressive Conditional Heteroskedasticity(GARCH)</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Vector_autoregression">Vector Autoregression(VAR)</a></li>
 </ul>
-</li>
-<li><strong>Nueral Network Model:</strong><ul>
+<p><strong>Nueral Network Model:</strong></p>
+<ul>
 <li>Neural Networks Autoregression(NNAR)</li>
 <li>Recurrent Neural Network(RNN)</li>
 <li>Long Short-Term Memory(LSTM)</li>
 <li>Gated Recurrent Unit(GRU)</li>
 </ul>
+</blockquote>
+<ul>
+<li><strong>분석단계 비교: 선형(회귀분석) vs 비선형(신경망)</strong></li>
+</ul>
+<table>
+<thead><tr>
+<th>-</th>
+<th>Linear Model</th>
+<th>Neural Network Model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>모델특징</strong></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>분석목적</td>
+<td>선형성파악(설명가능)</td>
+<td>비선형성파악(설명불가)</td>
+</tr>
+<tr>
+<td>이론적(수학적) 근거</td>
+<td>존재</td>
+<td>미존재</td>
+</tr>
+<tr>
+<td><strong>분석단계 특징(전처리)</strong></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>데이터 로딩</td>
+<td><span style="color:blue">Panel Data</span></td>
+<td><span style="color:red">다양(운이좋으면 Panel)</span></td>
+</tr>
+<tr>
+<td>데이터 빈칸 채우기/삭제</td>
+<td><span style="color:red">분석필요</span></td>
+<td><span style="color:red">분석필요</span></td>
+</tr>
+<tr>
+<td>데이터 컬럼 추가/삭제</td>
+<td><span style="color:red">분석필요+민감</span></td>
+<td><span style="color:red">분석필요+덜민감</span></td>
+</tr>
+<tr>
+<td>데이터 분리</td>
+<td><span style="color:blue">Train/Validate/Test</span></td>
+<td><span style="color:blue">Train/Validate/Test</span></td>
+</tr>
+<tr>
+<td>데이터 스케일링</td>
+<td><span style="color:red">분석필요/미필요</span></td>
+<td><span style="color:red">분석필요</span></td>
+</tr>
+<tr>
+<td><strong>분석단계 특징(모델링)</strong></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>입력 확인 및 변환</td>
+<td><span style="color:blue">Panel Data</span></td>
+<td><span style="color:red">다양(정해지지 않음)</span></td>
+</tr>
+<tr>
+<td>데이터 모델연결</td>
+<td><span style="color:blue">자동화</span></td>
+<td><span style="color:red">반자동화</span></td>
+</tr>
+<tr>
+<td>비용함수(Cost)</td>
+<td><span style="color:blue">최소제곱에러(MSE)</span></td>
+<td><span style="color:red">다양</span></td>
+</tr>
+<tr>
+<td>추정함수(Optimizer)</td>
+<td><span style="color:blue">고정(미분1회 대체가능)</span></td>
+<td><span style="color:red">다양(미분지속)</span></td>
+</tr>
+<tr>
+<td><strong>분석단계 특징(검증)</strong></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>정확성지표</td>
+<td><span style="color:red">다양</span></td>
+<td><span style="color:red">다양</span></td>
+</tr>
+<tr>
+<td>잔차진단활용</td>
+<td><span style="color:red">가능(분석필요)</span></td>
+<td><span style="color:blue">불가</span></td>
+</tr>
+<tr>
+<td><strong>분석단계 특징(결과해석)</strong></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>관계성 시각화/영향력 해석</td>
+<td><span style="color:red">가능(분석필요)</span></td>
+<td><span style="color:blue">불가</span></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#45936;&#51060;&#53552;&#51456;&#48708;-&#48169;&#54693;">&#45936;&#51060;&#53552;&#51456;&#48708; &#48169;&#54693;<a class="anchor-link" href="#&#45936;&#51060;&#53552;&#51456;&#48708;-&#48169;&#54693;">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="&#48708;&#49884;&#44228;&#50676;-&#45936;&#51060;&#53552;&#51456;&#48708;(General-Validation)">&#48708;&#49884;&#44228;&#50676; &#45936;&#51060;&#53552;&#51456;&#48708;(General Validation)<a class="anchor-link" href="#&#48708;&#49884;&#44228;&#50676;-&#45936;&#51060;&#53552;&#51456;&#48708;(General-Validation)">&#182;</a></h3><blockquote><p><strong>일반적준비(Simple Validation):</strong></p>
+<ul>
+<li><strong>훈련셋(Training set):</strong> 이름처럼 일반적으로 전체 데이터의 60%를 사용하여 기계학습을 하는데 사용됨  </li>
+<li><strong>검증셋(Validation set):</strong> <ul>
+<li>개발셋이라고도 하며, 일반적으로 전체 데이터의 20%를 사용함</li>
+<li>훈련된 여러가지 모델들의 성능을 테스트 하는데 사용되며 모델 선택의 기준이 됨</li>
+</ul>
 </li>
+<li><strong>테스트셋(Testing set):</strong> 전체 데이터의 20%를 사용하며 최종 모델의 정확성을 확인하는 목적에 사용됨</li>
 </ul>
-<center><img src='Image/Performance_Explanability_TimeSeries.png' width='600'></center><ul>
-<li><strong>설명력 최근 연구동향:</strong><ul>
-<li><a href="https://blog.fastforwardlabs.com/2017/09/01/LIME-for-couples.html">LIME</a></li>
-<li><a href="https://bdtechtalks.com/2019/01/10/darpa-xai-explainable-artificial-intelligence/">DARPA</a></li>
+</blockquote>
+<center><img src='Image/DataSplit_Simple.png' width='500'></center><blockquote><p><strong>$K$교차검사($K$-fold Cross Validation):</strong></p>
+<ol>
+<li>훈련셋을 복원없이 $K$개로 분리한 후, $K-1$는 하위훈련셋으로 나머지 1개는 검증셋으로 사용함  </li>
+<li>검증셋과 하위훈련셋을 번갈아가면서 $K$번 반복하여 각 모델별로 $K$개의 성능 추정치를 계산  </li>
+<li>$K$개의 성능 추정치 평균을 최종 모델 성능 기준으로 사용  </li>
+</ol>
+</blockquote>
+<center><img src='Image/DataSplit_Kfold.png' width='500'></center><blockquote><p><strong>간단한준비(Holdout Validation):</strong></p>
+<ul>
+<li><strong>훈련셋(Training set):</strong> 일반적으로 전체 데이터의 70% 사용 </li>
+<li><strong>테스트셋(Testing set):</strong> 일반적으로 전체 데이터의 30% 사용</li>
+</ul>
+<p><strong>$K$-fold vs. Random-subsamples vs. Leave-one-out vs. Leave-$p$-out</strong></p>
+<ul>
+<li><p><strong>$K$-fold</strong></p>
+<center><img src='Image/DataSplit_ver1.png' width='500'></center></li>
+<li><p><strong>Random-subsamples</strong></p>
+<center><img src='Image/DataSplit_ver2.png' width='500'></center></li>
+<li><p><strong>Leave-one-out</strong></p>
+<center><img src='Image/DataSplit_ver3.png' width='500'></center></li>
+<li><p><strong>Leave-$p$-out</strong></p>
+<center><img src='Image/DataSplit_ver4.png' width='500'></center></li>
+</ul>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="&#49884;&#44228;&#50676;-&#45936;&#51060;&#53552;&#51456;&#48708;(Time-Series-Validation)">&#49884;&#44228;&#50676; &#45936;&#51060;&#53552;&#51456;&#48708;(Time Series Validation)<a class="anchor-link" href="#&#49884;&#44228;&#50676;-&#45936;&#51060;&#53552;&#51456;&#48708;(Time-Series-Validation)">&#182;</a></h3><blockquote><ul>
+<li><p>시계열 데이터인 경우 랜덤성(set.seed)을 부여하면 안되고 시간축 유지가 핵심!</p>
+<ul>
+<li><strong>훈련셋(Training set):</strong> 가장 오래된 데이터</li>
+<li><strong>검증셋(Validation set):</strong> 그 다음 최근 데이터</li>
+<li><strong>테스트셋(Testing set):</strong> 가장 최신의 데이터<center><img src='Image/DataSplit_TimeSeries.png' width='500'></center></li>
 </ul>
 </li>
+<li><p><strong>1스텝 교차검사(One-step Ahead Cross-validation)</strong></p>
+<center><img src='Image/DataSplit_TimeSeries_ver1.png' width='500'></center></li>
+<li><p><strong>2스텝 교차검사(Two-step Ahead Cross-validation)</strong></p>
+<center><img src='Image/DataSplit_TimeSeries_ver2.png' width='500'></center></li>
 </ul>
+</blockquote>
 
 </div>
 </div>
@@ -14298,48 +14452,6 @@ data = sm.datasets.get_rdataset("Titanic", package="datasets")</code></pre>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="&#45936;&#51060;&#53552;&#51456;&#48708;-&#48169;&#54693;">&#45936;&#51060;&#53552;&#51456;&#48708; &#48169;&#54693;<a class="anchor-link" href="#&#45936;&#51060;&#53552;&#51456;&#48708;-&#48169;&#54693;">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="&#48708;&#49884;&#44228;&#50676;-&#45936;&#51060;&#53552;&#51456;&#48708;(General-Validation)">&#48708;&#49884;&#44228;&#50676; &#45936;&#51060;&#53552;&#51456;&#48708;(General Validation)<a class="anchor-link" href="#&#48708;&#49884;&#44228;&#50676;-&#45936;&#51060;&#53552;&#51456;&#48708;(General-Validation)">&#182;</a></h3><blockquote><p><strong>일반적준비(Simple Validation):</strong></p>
-<ul>
-<li><strong>훈련셋(Training set):</strong> 이름처럼 일반적으로 전체 데이터의 60%를 사용하여 기계학습을 하는데 사용됨  </li>
-<li><strong>검증셋(Validation set):</strong> <ul>
-<li>개발셋이라고도 하며, 일반적으로 전체 데이터의 20%를 사용함</li>
-<li>훈련된 여러가지 모델들의 성능을 테스트 하는데 사용되며 모델 선택의 기준이 됨</li>
-</ul>
-</li>
-<li><strong>테스트셋(Testing set):</strong> 전체 데이터의 20%를 사용하며 최종 모델의 정확성을 확인하는 목적에 사용됨</li>
-</ul>
-</blockquote>
-<center><img src='Image/DataSplit_Simple.png' width='500'></center><blockquote><p><strong>$K$교차검사($K$-fold Cross Validation):</strong></p>
-<ol>
-<li>훈련셋을 복원없이 $K$개로 분리한 후, $K-1$는 하위훈련셋으로 나머지 1개는 검증셋으로 사용함  </li>
-<li>검증셋과 하위훈련셋을 번갈아가면서 $K$번 반복하여 각 모델별로 $K$개의 성능 추정치를 계산  </li>
-<li>$K$개의 성능 추정치 평균을 최종 모델 성능 기준으로 사용  </li>
-</ol>
-</blockquote>
-<center><img src='Image/DataSplit_Kfold.png' width='500'></center><blockquote><p><strong>간단한준비(Holdout Validation):</strong></p>
-<ul>
-<li><strong>훈련셋(Training set):</strong> 일반적으로 전체 데이터의 70% 사용 </li>
-<li><strong>테스트셋(Testing set):</strong> 일반적으로 전체 데이터의 30% 사용</li>
-</ul>
-<p><strong>$K$-fold vs. Random-subsamples vs. Leave-one-out vs. Leave-$p$-out</strong></p>
-<ul>
-<li><p><strong>$K$-fold</strong></p>
-<center><img src='Image/DataSplit_ver1.png' width='500'></center></li>
-<li><p><strong>Random-subsamples</strong></p>
-<center><img src='Image/DataSplit_ver2.png' width='500'></center></li>
-<li><p><strong>Leave-one-out</strong></p>
-<center><img src='Image/DataSplit_ver3.png' width='500'></center></li>
-<li><p><strong>Leave-$p$-out</strong></p>
-<center><img src='Image/DataSplit_ver4.png' width='500'></center></li>
-</ul>
-</blockquote>
-
 </div>
 </div>
 </div>
