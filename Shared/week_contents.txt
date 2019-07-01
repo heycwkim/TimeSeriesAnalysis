@@ -1,34 +1,33 @@
 [Week1]
-> ½Ç½À: installation(°­ÀÇÀÚ·á ¹× ÇÁ·Î±×·¥ÁØºñ)
-> ÀÌ·Ğ: Lecture1
-> ½Ç½À: Practice0 + Practice1
+> ì‹¤ìŠµ: installation(ê°•ì˜ìë£Œ ë° í”„ë¡œê·¸ë¨ì¤€ë¹„)
+> ì´ë¡ : Lecture1
+> ì‹¤ìŠµ: Practice0 + Practice1
 
 [Week2]
-> ÀÌ·Ğ: Lecture2 1.1~2.1
-> ½Ç½À: Practice3 1~4
+> ì´ë¡ : Lecture2 1.1~2.1
+> ì‹¤ìŠµ: Practice3 1~4
 
 [Week3]
-> ÀÌ·Ğ: Lecture2 2.2~3.4
-> ½Ç½À: Practice3 5~8(½Ã°¢È­¸¸)
+> ì´ë¡ : Lecture2 2.2~3.4
+> ì‹¤ìŠµ: Practice3 5~8(ì‹œê°í™”ë§Œ)
 
 [Week4]
-> ½Ç½À: Practive3 8~9
-> ÀÌ·Ğ: Lecture2 4.1~4.6(4.3Àº 4.3.1¸¸, 4.5Á¦¿Ü)
-> ½Ç½À: Practive4 1~3.1
+> ì‹¤ìŠµ: Practive3 8~9
+> ì´ë¡ : Lecture2 4.1~4.6(4.3ì€ 4.3.1ë§Œ, 4.5ì œì™¸)
+> ì‹¤ìŠµ: Practive4 1~3.1
 
 [Week5]
-> ÀÌ·Ğ: Lecture2 4.3³ª¸ÓÁö
-> ½Ç½À: Practive4 3.2~4
-> ÀÌ·Ğ: Lecture2 4.5 + Lecture3 1.1~1.3 
+> ì´ë¡ : Lecture2 4.3ë‚˜ë¨¸ì§€
+> ì‹¤ìŠµ: Practive4 3.2~4
+> ì´ë¡ : Lecture2 4.5 + Lecture3 1.1~1.3 
 
 [Week6]
-> ½Ç½À: Practive5 
-> ÀÌ·Ğ: Lecture3 2.1~
+> ì‹¤ìŠµ: Practive5 
+> ì´ë¡ : Lecture3 2.1~2.2.4
 
 [Week7]
-> ÀÌ·Ğ:
-> ½Ç½À:
+> ì´ë¡ : Lecture3 2.2.5~
+> ì‹¤ìŠµ: Practice6
 
 [Week8]
-> ÀÌ·Ğ:
-> ½Ç½À:
+> ì´ë¡ : Lecture4
